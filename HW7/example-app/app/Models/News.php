@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use App\Enums\NewsStatusEnum;
+use DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Collection;
+
+class News extends Model
+{
+    protected $table = 'news';
+
+    protected $fillable = [
+        'title', 'text'
+    ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+}
